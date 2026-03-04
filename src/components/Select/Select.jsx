@@ -1,23 +1,32 @@
 import { useFormContext } from "react-hook-form";
+import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
+import styles from "./Select.module.css";
 
-export const Select = ({ name, label, options }) => {
-  const {
-    register,
-    formState: { errors },
-  } = useFormContext();
-  const error = name.split(".").reduce((obj, key) => obj?.[key], errors);
+export const Select = ({ name, label, options = [], ...props }) => {
+  const { register } = useFormContext();
 
   return (
-    <div className="select-group">
-      {label && <label htmlFor={name}>{label}</label>}
-      <select id={name} {...register(name)}>
-        {options.map((option) => (
-          <option key={option} value={option}>
-            {option}
-          </option>
-        ))}
+    <div className={styles.selectWrapper}>
+      <label htmlFor={name}>{label}</label>
+      <select
+        {...register(name)}
+        {...props}
+        id={name}
+        className={styles.select}
+      >
+        <option value="">Wybierz...</option>
+        {options.map((opt) => {
+          const val = typeof opt === "string" ? opt : opt.value;
+          const lbl = typeof opt === "string" ? opt : opt.label;
+
+          return (
+            <option key={val} value={val}>
+              {lbl}
+            </option>
+          );
+        })}
       </select>
-      {error && <span className="error">{error.message}</span>}
+      <ErrorMessage name={name} />
     </div>
   );
 };

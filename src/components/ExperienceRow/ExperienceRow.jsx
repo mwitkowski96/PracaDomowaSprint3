@@ -21,14 +21,15 @@ export const ExperienceRow = ({ index, remove }) => {
       {selectedTech === "Inne" && (
         <Input
           name={`experienceList.${index}.otherTechnology`}
-          placeholder="Wpisz nazwę technologii"
+          label="Inna technologia"
+          placeholder="Wpisz nazwę"
         />
       )}
 
       <Select
         name={`experienceList.${index}.level`}
-        label="Lata"
-        options={["1", "2", "3", "4", "5"]}
+        label="Lata doświadczenia"
+        options={["1", "2", "3", "4", "5+"]}
       />
 
       <button type="button" onClick={() => remove(index)}>

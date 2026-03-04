@@ -20,3 +20,9 @@
 *::after {
   box-sizing: border-box;
 }
+
+.error {
+  width: 75%;
+  color: var(--error-red);
+  font-size: var(var(--font-size-xs));
+}

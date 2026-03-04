@@ -1,12 +1,9 @@
 import { useFormContext } from "react-hook-form";
+import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
 import styles from "./CheckboxGroup.module.css";
 
 export const CheckboxGroup = ({ name, label, options }) => {
-  const {
-    register,
-    formState: { errors },
-  } = useFormContext();
-  const error = name.split(".").reduce((obj, key) => obj?.[key], errors);
+  const { register } = useFormContext();
 
   return (
     <div className={styles.checkboxGroupContainer}>
@@ -24,7 +21,7 @@ export const CheckboxGroup = ({ name, label, options }) => {
           </label>
         ))}
       </div>
-      {error && <span className={styles.error}>{error.message}</span>}
+      <ErrorMessage name={name} />
     </div>
   );
 };

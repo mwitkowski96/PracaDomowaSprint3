@@ -1,20 +1,19 @@
 import { useFormContext } from "react-hook-form";
+import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
+
+import styles from "./Checkbox.module.css";
 
 export const Checkbox = ({ name, label }) => {
-  const {
-    register,
-    formState: { errors },
-  } = useFormContext();
-
-  const error = name.split(".").reduce((obj, key) => obj?.[key], errors);
+  const { register } = useFormContext();
 
   return (
-    <div className="checkbox-group">
-      <label htmlFor={name}>
-        <input id={name} type="checkbox" {...register(name)} />
+    <div className={styles.checkboxWrapper}>
+      <label className={styles.label}>
+        <input type="checkbox" {...register(name)} className={styles.input} />
         {label}
       </label>
-      {error && <span className="error">{error.message}</span>}
+
+      <ErrorMessage name={name} />
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import { useFormContext } from "react-hook-form";
+import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
 import styles from "./Radio.module.css";
 
 export const Radio = ({ name, label, options = [] }) => {
@@ -21,6 +22,7 @@ export const Radio = ({ name, label, options = [] }) => {
           </label>
         ))}
       </div>
+      <ErrorMessage name={name} />
     </div>
   );
 };

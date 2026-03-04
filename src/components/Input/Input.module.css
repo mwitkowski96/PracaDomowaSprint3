@@ -9,7 +9,10 @@
   border-radius: 0.25rem;
   font-size: 1rem;
   background-color: rgba(255, 255, 255, 0.501);
-  transition: 0.5s ease-in-out;
+  transition:
+    border-color,
+    background-color,
+    0.3s ease-in-out;
   color: black;
 }
 
@@ -18,10 +21,4 @@
   border-color: #5b21b6; /* Fioletowy kolor obramowania przy focusie */
   box-shadow: 0 0 0 3px rgba(91, 33, 182, 0.2); /* Subtelny fioletowy cień */
   background-color: white;
-}
-
-.error {
-  width: 75%;
-  color: red;
-  font-size: 0.875rem;
 }

@@ -1,0 +1,18 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 20px; /* przykładowy odstęp */
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

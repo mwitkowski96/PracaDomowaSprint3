@@ -1,13 +1,10 @@
 import { useFormContext } from "react-hook-form";
+import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
 
 import styles from "./Input.module.css";
 
 export const Input = ({ name, label, registerOptions, ...props }) => {
-  const {
-    register,
-    formState: { errors },
-  } = useFormContext();
-  const error = name.split(".").reduce((obj, key) => obj?.[key], errors);
+  const { register } = useFormContext();
 
   return (
     <>
@@ -17,7 +14,7 @@ export const Input = ({ name, label, registerOptions, ...props }) => {
         {...register(name, registerOptions)}
         {...props}
       />
-      {error && <span className={styles.error}>{error.message}</span>}
+      <ErrorMessage name={name} />
     </>
   );
 };

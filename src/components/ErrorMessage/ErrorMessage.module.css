@@ -1,0 +1,8 @@
+.error {
+  width: 75%;
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 4px; /* Mały odstęp od pola */
+  text-align: left;
+  display: block; /* Żeby width: 75% zadziałało poprawnie na span */
+}
