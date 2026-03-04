@@ -1,0 +1,54 @@
+.tilesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.tileItem {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tileText {
+  padding: 10px 20px;
+  border: 2px solid var(--light-purple);
+  border-radius: var(--radius);
+  background-color: var(--white);
+  transition: all 0.2s ease;
+  font-weight: 500;
+  width: 100%;
+  text-align: center;
+}
+
+.srOnly:checked + .tileText {
+  background-color: var(--primary-purple);
+  color: var(--white);
+  border-color: var(--primary-purple);
+  transform: translateY(-2px);
+}
+
+.tileItem:hover .tileText {
+  border-color: var(--primary-purple);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.srOnly:focus-visible + .tileText {
+  outline: 2px solid var(--primary-purple);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--light-purple);
+}

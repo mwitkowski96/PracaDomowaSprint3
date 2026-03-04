@@ -1,4 +1,5 @@
 import { useFormContext } from "react-hook-form";
+import styles from "./CheckboxGroup.module.css";
 
 export const CheckboxGroup = ({ name, label, options }) => {
   const {
@@ -8,22 +9,22 @@ export const CheckboxGroup = ({ name, label, options }) => {
   const error = name.split(".").reduce((obj, key) => obj?.[key], errors);
 
   return (
-    <div className="checkbox-group-container">
+    <div className={styles.checkboxGroupContainer}>
       <h3>{label}</h3>
-      <div className="tiles-container">
+      <div className={styles.tilesContainer}>
         {options.map((option) => (
-          <label key={option} className="tile-item">
+          <label key={option} className={styles.tileItem}>
             <input
               type="checkbox"
               value={option}
               {...register(name)}
-              className="sr-only"
+              className={styles.srOnly}
             />
-            <span className="tile-text">{option}</span>
+            <span className={styles.tileText}>{option}</span>
           </label>
         ))}
       </div>
-      {error && <span className="error">{error.message}</span>}
+      {error && <span className={styles.error}>{error.message}</span>}
     </div>
   );
 };

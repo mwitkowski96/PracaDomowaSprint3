@@ -1,5 +1,7 @@
 import { useFormContext } from "react-hook-form";
 
+import styles from "./Input.module.css";
+
 export const Input = ({ name, label, registerOptions, ...props }) => {
   const {
     register,
@@ -8,10 +10,14 @@ export const Input = ({ name, label, registerOptions, ...props }) => {
   const error = name.split(".").reduce((obj, key) => obj?.[key], errors);
 
   return (
-    <div className="input-container">
-      {label && <label>{label}</label>}
-      <input {...register(name, registerOptions)} {...props} />
-      {error && <span className="error">{error.message}</span>}
-    </div>
+    <>
+      {label && <label className={styles.srOnly}>{label}</label>}
+      <input
+        className={styles.input}
+        {...register(name, registerOptions)}
+        {...props}
+      />
+      {error && <span className={styles.error}>{error.message}</span>}
+    </>
   );
 };

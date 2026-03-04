@@ -1,0 +1,27 @@
+.srOnly {
+  display: none;
+  position: absolute;
+}
+.input {
+  width: 80%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  background-color: rgba(255, 255, 255, 0.501);
+  transition: 0.5s ease-in-out;
+  color: black;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #5b21b6; /* Fioletowy kolor obramowania przy focusie */
+  box-shadow: 0 0 0 3px rgba(91, 33, 182, 0.2); /* Subtelny fioletowy cień */
+  background-color: white;
+}
+
+.error {
+  width: 75%;
+  color: red;
+  font-size: 0.875rem;
+}

@@ -1,0 +1,22 @@
+:root {
+  --primary-purple: #5b21b6;
+  --light-purple: #ddd6fe;
+  --error-red: #ef4444;
+  --white: #ffffff;
+  --text-main: #1f2937;
+  --bg-gray: #f9fafb;
+
+  --font-size-xs: 0.75rem;
+  --font-size-m: 1rem;
+  --font-size-l: 1.25rem;
+  --font-size-xl: 1.75rem;
+
+  --spacing-m: 1rem;
+  --radius: 1rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

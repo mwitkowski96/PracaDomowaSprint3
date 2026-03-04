@@ -8,13 +8,7 @@ const SingleFileFromFileListSchema = z
     message: "File is required",
   })
   .transform((files) => files.item(0))
-  .pipe(
-    z
-      .file()
-      .min(10_000) // minimum .size (bytes)
-      .max(1_000_000) // maximum .size (bytes)
-      .mime(["image/jpeg", "image/png"]), // MIME type
-  );
+  .pipe(z.file().min(10_000).max(1_000_000).mime(["image/jpeg", "image/png"]));
 
 export const UserSchema = z
   .object({
@@ -27,7 +21,6 @@ export const UserSchema = z
       .array(z.enum(["React", "Node.js", "HTML", "CSS", "Next.js"]))
       .min(1),
 
-    // accepts FileList input, validates the first File
     fileUpload: SingleFileFromFileListSchema,
 
     hasExperience: z.boolean(),
