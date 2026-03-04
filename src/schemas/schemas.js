@@ -1,25 +1,40 @@
 import * as z from "zod";
+
 export const PhoneNumberSchema = z.string().regex(/^\d{9}$/);
+
+const SingleFileFromFileListSchema = z
+  .instanceof(FileList)
+  .refine((files) => files.length > 0, {
+    message: "File is required",
+  })
+  .transform((files) => files.item(0))
+  .pipe(
+    z
+      .file()
+      .min(10_000) // minimum .size (bytes)
+      .max(1_000_000) // maximum .size (bytes)
+      .mime(["image/jpeg", "image/png"]), // MIME type
+  );
 
 export const UserSchema = z
   .object({
-    phone: z.string().regex(/^\d{9}$/),
+    phone: PhoneNumberSchema,
     name: z.string().min(3),
     lastName: z.string().min(3),
     email: z.email(),
-    studyForm: z.enum(["stacjonarne", "online"]),
+    studyForm: z.enum(["Stacjonarna", "Online"]),
     technologies: z
-      .array(z.enum(["JavaScript", "Python", "Java", "C#", "Ruby"]))
+      .array(z.enum(["React", "Node.js", "HTML", "CSS", "Next.js"]))
       .min(1),
-    fileUpload: z
-      .file()
-      .mime(["image/jpeg", "image/png"])
-      .max(3 * 1024 * 1024), //Maksymalny rozmiar 3MB.
+
+    // accepts FileList input, validates the first File
+    fileUpload: SingleFileFromFileListSchema,
+
     hasExperience: z.boolean(),
     experienceList: z.array(
       z.object({
         technology: z.string().min(1, "Wpisz nazwe technologii"),
-        level: z.string(["Junior", "Mid", "Senior"]),
+        level: z.coerce.number().min(1).max(5),
       }),
     ),
   })
