@@ -13,12 +13,13 @@ import styles from "./RegistrationForm.module.css";
 export const RegistrationForm = () => {
   const methods = useForm({
     resolver: zodResolver(UserSchema),
+    mode: "onChange",
     defaultValues: {
       phone: "",
       name: "",
       lastName: "",
       email: "",
-      studyForm: "online",
+      studyForm: "Online",
       technologies: [],
       fileUpload: null,
       hasExperience: false,
@@ -26,9 +27,15 @@ export const RegistrationForm = () => {
     },
   });
 
-  const { handleSubmit } = methods;
+  const {
+    handleSubmit,
+    formState: { isSubmitting },
+  } = methods;
 
-  const onSubmit = (data) => console.log("Dane:", data);
+  const onSubmit = (data) => {
+    console.log("Dane wysłane pomyślnie:", data);
+    alert("Formularz wysłany!");
+  };
 
   return (
     <FormProvider {...methods}>
@@ -48,6 +55,7 @@ export const RegistrationForm = () => {
             />
             <Input name="phone" label="Telefon" placeholder="Telefon" />
           </FormSection>
+
           <FormSection title="Preferencje kursu">
             <Radio
               name="studyForm"
@@ -63,13 +71,22 @@ export const RegistrationForm = () => {
               options={["React", "Node.js", "HTML", "CSS", "Next.js"]}
             />
           </FormSection>
-          <FormSection title="Twoje CV">
-            <FileUpload name="fileUpload" label="Załącz CV" />
-          </FormSection>
-          <ExperienceSection></ExperienceSection>
 
-          <button type="submit" className={styles.btnSubmit}>
-            Wyślij zgłoszenie
+          <FormSection title="Twoje CV">
+            <FileUpload
+              name="fileUpload"
+              label="Załącz CV (PDF, JPG, PNG - max 5MB)"
+            />
+          </FormSection>
+
+          <ExperienceSection />
+
+          <button
+            type="submit"
+            className={styles.btnSubmit}
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Wysyłanie..." : "Wyślij zgłoszenie"}
           </button>
         </form>
       </div>

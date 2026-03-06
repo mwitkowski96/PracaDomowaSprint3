@@ -1,24 +1,36 @@
-.srOnly {
-  display: none;
-  position: absolute;
-}
-.input {
-  width: 80%;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 0.25rem;
-  font-size: 1rem;
-  background-color: rgba(255, 255, 255, 0.501);
-  transition:
-    border-color,
-    background-color,
-    0.3s ease-in-out;
-  color: black;
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
 }
 
-.input:focus {
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.inputField {
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 15px;
+  transition: border-color 0.2s;
+}
+
+.inputField:focus {
   outline: none;
-  border-color: #5b21b6; /* Fioletowy kolor obramowania przy focusie */
-  box-shadow: 0 0 0 3px rgba(91, 33, 182, 0.2); /* Subtelny fioletowy cień */
-  background-color: white;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Styl dla inputa, gdy ma błąd */
+.inputError {
+  border-color: #ef4444;
+}
+
+.inputError:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
 }

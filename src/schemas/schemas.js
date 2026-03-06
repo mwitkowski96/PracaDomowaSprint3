@@ -1,46 +1,63 @@
 import * as z from "zod";
 
-export const PhoneNumberSchema = z.string().regex(/^\d{9}$/);
+const MAX_FILE_SIZE = 5 * 1024 * 1024;
+const ACCEPTED_TYPES = ["application/pdf", "image/jpeg", "image/png"];
+
+export const PhoneNumberSchema = z
+  .string()
+  .regex(/^\d{9}$/, "Numer telefonu musi składać się z 9 cyfr");
 
 const SingleFileFromFileListSchema = z
-  .instanceof(FileList)
-  .refine((files) => files.length > 0, {
-    message: "File is required",
-  })
+  .any()
+  .refine(
+    (files) => files instanceof FileList && files.length > 0,
+    "Plik jest wymagany",
+  )
   .transform((files) => files.item(0))
-  .pipe(z.file().min(10_000).max(1_000_000).mime(["image/jpeg", "image/png"]));
+  .refine(
+    (file) => ACCEPTED_TYPES.includes(file?.type),
+    "Obsługiwane formaty to: .jpeg, .png",
+  )
+  .refine(
+    (file) => file.size > 0 && file.size <= MAX_FILE_SIZE,
+    "Plik musi być mniejszy niż 5MB",
+  );
 
 export const UserSchema = z
   .object({
+    name: z.string().min(3, "Imię musi mieć co najmniej 3 znaki"),
+    lastName: z.string().min(3, "Nazwisko musi mieć co najmniej 3 znaki"),
+    email: z.email("Wpisz poprawny adres e-mail"),
     phone: PhoneNumberSchema,
-    name: z.string().min(3),
-    lastName: z.string().min(3),
-    email: z.email(),
-    studyForm: z.enum(["Stacjonarna", "Online"]),
+
+    studyForm: z.enum(["Stacjonarna", "Online"], {
+      errorMap: () => ({ message: "Wybierz formę nauki" }),
+    }),
+
     technologies: z
-      .array(z.enum(["React", "Node.js", "HTML", "CSS", "Next.js"]))
-      .min(1),
+      .array(z.string())
+      .min(1, "Wybierz przynajmniej jedną technologię"),
 
     fileUpload: SingleFileFromFileListSchema,
 
     hasExperience: z.boolean(),
+
     experienceList: z.array(
       z.object({
-        technology: z.string().min(1, "Wpisz nazwe technologii"),
-        level: z.coerce.number().min(1).max(5),
+        technology: z.string().min(1, "Wybierz technologię"),
+        level: z.coerce.number().min(1, "Wybierz poziom").max(5),
       }),
     ),
   })
   .refine(
     (data) => {
       if (data.hasExperience) {
-        return data.experienceList.length > 0;
+        return data.experienceList && data.experienceList.length > 0;
       }
       return true;
     },
     {
-      message:
-        "Jeśli masz doświadczenie, musisz podać przynajmniej jedno doświadczenie",
+      message: "Dodaj przynajmniej jedną pozycję do listy doświadczenia",
       path: ["experienceList"],
     },
   );

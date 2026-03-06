@@ -2,6 +2,8 @@ import { useWatch, useFormContext } from "react-hook-form";
 import { Select } from "../Select/Select";
 import { Input } from "../Input/Input";
 
+import styles from "./ExperienceRow.module.css";
+
 export const ExperienceRow = ({ index, remove }) => {
   const { control } = useFormContext();
 
@@ -11,7 +13,7 @@ export const ExperienceRow = ({ index, remove }) => {
   });
 
   return (
-    <div className="experience-row">
+    <div className={styles.experienceRow}>
       <Select
         name={`experienceList.${index}.technology`}
         label="Technologia"

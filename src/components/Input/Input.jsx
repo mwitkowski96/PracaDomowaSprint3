@@ -1,20 +1,39 @@
 import { useFormContext } from "react-hook-form";
 import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
-
 import styles from "./Input.module.css";
 
-export const Input = ({ name, label, registerOptions, ...props }) => {
-  const { register } = useFormContext();
+export const Input = ({
+  name,
+  label,
+  type = "text",
+  placeholder,
+  ...props
+}) => {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+
+  const hasError = name.split(".").reduce((obj, key) => obj?.[key], errors);
 
   return (
-    <>
-      {label && <label className={styles.srOnly}>{label}</label>}
+    <div className={styles.inputWrapper}>
+      {label && (
+        <label htmlFor={name} className={styles.label}>
+          {label}
+        </label>
+      )}
+
       <input
-        className={styles.input}
-        {...register(name, registerOptions)}
+        id={name}
+        type={type}
+        placeholder={placeholder}
+        {...register(name)}
         {...props}
+        className={`${styles.inputField} ${hasError ? styles.inputError : ""}`}
       />
+
       <ErrorMessage name={name} />
-    </>
+    </div>
   );
 };

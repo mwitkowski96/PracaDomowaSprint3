@@ -1,0 +1,23 @@
+.experienceRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr auto;
+  gap: 15px;
+  align-items: flex-end;
+  padding: 15px;
+  background: #f9fafb;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.btnRemove {
+  background: none;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btnRemove:hover {
+  background: #fef2f2;
+}
