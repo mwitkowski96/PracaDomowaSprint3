@@ -8,12 +8,12 @@
   display: block;
   font-size: var(--font-size-l);
   font-weight: 600;
-  color: var(--primary-purple);
+  color: var(--secondary);
   margin-bottom: var(--spacing-m);
   text-align: center;
 }
 
-.optionsContainer {
+.optionsWrapper {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -24,7 +24,7 @@
   display: flex;
   align-items: center;
   padding: var(--spacing-m);
-  border: 2px solid var(--light-purple);
+  border: 2px solid var(--secondary);
   border-radius: var(--radius);
   cursor: pointer;
   transition: all 0.3s ease-in-out;
@@ -32,7 +32,6 @@
   position: relative;
 }
 
-/* BEZPIECZNE UKRYCIE: Pozwala na nawigację TAB i strzałkami ⌨️ */
 .radioInput {
   position: absolute;
   width: 1px;
@@ -48,7 +47,7 @@
 .customCircle {
   width: 20px;
   height: 20px;
-  border: 2px solid var(--light-purple);
+  border: 2px solid var(--secondary);
   border-radius: 50%;
   margin-right: 12px;
   display: flex;
@@ -61,15 +60,14 @@
   content: "";
   width: 10px;
   height: 10px;
-  background-color: var(--primary-purple);
+  background-color: var(--primary);
   border-radius: 50%;
   transform: scale(0);
   transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Stan Zaznaczony 🟣 */
 .radioInput:checked + .customCircle {
-  border-color: var(--primary-purple);
+  border-color: var(--primary);
 }
 
 .radioInput:checked + .customCircle::after {
@@ -77,12 +75,11 @@
 }
 
 .radioLabel:has(.radioInput:checked) {
-  border-color: var(--primary-purple);
+  border-color: var(--primary);
   background-color: #f5f3ff;
 }
 
-/* Obsługa Focusa dla klawiatury 🎯 */
 .radioInput:focus-visible + .customCircle {
-  outline: 2px solid var(--primary-purple);
+  outline: 2px solid var(--primary);
   outline-offset: 3px;
 }

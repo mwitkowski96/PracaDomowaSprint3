@@ -1,6 +1,9 @@
 #root {
   max-width: 720px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+}
+
+.App {
+  color: #e82b2b;
 }

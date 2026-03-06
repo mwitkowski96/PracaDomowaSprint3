@@ -8,7 +8,7 @@ export const Radio = ({ name, label, options = [] }) => {
   return (
     <div className={styles.radioGroup}>
       <span className={styles.subHeading}>{label}</span>
-      <div className={styles.optionsContainer}>
+      <div className={styles.optionsWrapper}>
         {options.map((option) => (
           <label key={option.value} className={styles.radioLabel}>
             <input

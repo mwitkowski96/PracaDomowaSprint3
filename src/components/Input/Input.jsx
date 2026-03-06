@@ -17,7 +17,7 @@ export const Input = ({
   const hasError = name.split(".").reduce((obj, key) => obj?.[key], errors);
 
   return (
-    <div className={styles.inputWrapper}>
+    <>
       {label && (
         <label htmlFor={name} className={styles.label}>
           {label}
@@ -34,6 +34,6 @@ export const Input = ({
       />
 
       <ErrorMessage name={name} />
-    </div>
+    </>
   );
 };

@@ -6,7 +6,7 @@ export const CheckboxGroup = ({ name, label, options }) => {
   const { register } = useFormContext();
 
   return (
-    <div className={styles.checkboxGroupContainer}>
+    <div className={styles.checkboxGroup}>
       <h3>{label}</h3>
       <div className={styles.tilesContainer}>
         {options.map((option) => (

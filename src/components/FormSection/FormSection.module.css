@@ -2,17 +2,17 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-bottom: 20px; /* przykładowy odstęp */
+  margin-bottom: 20px;
 }
 
 .sectionTitle {
-  font-size: 1.5rem;
-  color: #333;
-  margin-bottom: 15px;
+  font-size: var(--font-size-l);
+  color: var(--primary);
+  margin-bottom: var(--margin-l);
 }
 
-.container {
+.wrapper {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--gap-m);
 }
