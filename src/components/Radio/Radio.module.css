@@ -1,47 +1,39 @@
 .radioGroup {
   width: 100%;
-  margin-top: var(--spacing-m);
-  padding: var(--spacing-m) 0;
 }
 
-.subHeading {
-  display: block;
-  font-size: var(--font-size-l);
-  font-weight: 600;
-  color: var(--secondary);
-  margin-bottom: var(--spacing-m);
-  text-align: center;
-}
-
-.optionsWrapper {
+.wrapper {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--padding-s);
   width: 100%;
 }
 
 .radioLabel {
   display: flex;
   align-items: center;
-  padding: var(--spacing-m);
+  justify-content: center;
+  padding: var(--padding-s);
   border: 2px solid var(--secondary);
   border-radius: var(--radius);
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   background-color: var(--white);
   position: relative;
+  font-size: var(--font-size-s);
+  color: var(--text-main);
 }
 
-.radioInput {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+.radioLabel:hover:not(:has(:global(.sr-only):checked)) {
+  border-color: var(--primary-light);
+}
+
+.radioLabel:has(:global(.sr-only):checked) {
+  border-color: var(--primary);
+  background-color: var(--primary);
+  color: var(--white);
 }
 
 .customCircle {
@@ -49,7 +41,7 @@
   height: 20px;
   border: 2px solid var(--secondary);
   border-radius: 50%;
-  margin-right: 12px;
+  margin-right: var(--padding-s);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,26 +52,27 @@
   content: "";
   width: 10px;
   height: 10px;
-  background-color: var(--primary);
+  background-color: var(--secondary);
   border-radius: 50%;
   transform: scale(0);
   transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.radioInput:checked + .customCircle {
-  border-color: var(--primary);
+:global(.sr-only):checked + .customCircle {
+  border-color: var(--white);
 }
 
-.radioInput:checked + .customCircle::after {
+:global(.sr-only):checked + .customCircle::after {
   transform: scale(1);
 }
 
-.radioLabel:has(.radioInput:checked) {
-  border-color: var(--primary);
-  background-color: #f5f3ff;
-}
-
-.radioInput:focus-visible + .customCircle {
+:global(.sr-only):focus-visible + .customCircle {
   outline: 2px solid var(--primary);
   outline-offset: 3px;
+}
+
+@media (max-width: 576px) {
+  .radioLabel {
+    width: 100%;
+  }
 }

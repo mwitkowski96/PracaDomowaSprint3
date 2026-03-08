@@ -1,7 +1,7 @@
 import * as z from "zod";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
-const ACCEPTED_TYPES = ["application/pdf", "image/jpeg", "image/png"];
+const ACCEPTED_TYPES = ["image/jpeg", "image/png"];
 
 export const PhoneNumberSchema = z
   .string()
@@ -16,7 +16,7 @@ const SingleFileFromFileListSchema = z
   .transform((files) => files.item(0))
   .refine(
     (file) => ACCEPTED_TYPES.includes(file?.type),
-    "Obsługiwane formaty to: .jpeg, .png",
+    "Obsługiwane formaty to: .jpg, .png (tylko zdjęcia)",
   )
   .refine(
     (file) => file.size > 0 && file.size <= MAX_FILE_SIZE,

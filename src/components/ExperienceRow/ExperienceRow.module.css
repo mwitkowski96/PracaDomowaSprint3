@@ -1,23 +1,24 @@
 .experienceRow {
   display: grid;
   grid-template-columns: 2fr 1fr auto;
-  gap: 15px;
+  gap: var(--gap-m);
   align-items: flex-end;
-  padding: 15px;
-  background: #f9fafb;
-  border-radius: 8px;
-  margin-bottom: 10px;
+  padding: var(--padding-m);
+  background: var(--bg-violet);
+  border-radius: var(--radius-s);
+  margin-bottom: var(--gap-m);
 }
 
 .btnRemove {
   background: none;
-  border: 1px solid #fecaca;
-  color: #dc2626;
-  padding: 8px;
-  border-radius: 6px;
+  border: 1px solid var(--error-red-light);
+  color: var(--error-red);
+  padding: var(--padding-xs);
+  border-radius: var(--radius-s);
   cursor: pointer;
+  transition: background-color 0.2s;
 }
 
 .btnRemove:hover {
-  background: #fef2f2;
+  background: color-mix(in srgb, var(--error-red) 10%, transparent);
 }

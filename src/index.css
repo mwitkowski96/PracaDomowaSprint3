@@ -1,9 +1,36 @@
-#root {
-  max-width: 720px;
-  margin: 0 auto;
-  text-align: center;
+body {
+  margin: 0;
+  background-image: linear-gradient(
+    135deg,
+    var(--primary-light) 0%,
+    var(--primary-purple) 100%
+  );
 }
 
-.App {
-  color: #e82b2b;
+#root {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.form-subheading {
+  display: block;
+  font-size: var(--font-size-m);
+  font-weight: 600;
+  color: var(--secondary);
+  margin-bottom: var(--margin-m);
+  text-align: center;
 }

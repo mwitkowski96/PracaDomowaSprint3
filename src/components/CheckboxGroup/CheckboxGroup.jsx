@@ -3,11 +3,23 @@ import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
 import styles from "./CheckboxGroup.module.css";
 
 export const CheckboxGroup = ({ name, label, options }) => {
-  const { register } = useFormContext();
+  const { register, getValues, setValue } = useFormContext();
+
+  const handleKeyDown = (e, option) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      const currentValues = getValues(name) || [];
+      const newValues = currentValues.includes(option)
+        ? currentValues.filter((val) => val !== option)
+        : [...currentValues, option];
+
+      setValue(name, newValues, { shouldValidate: true, shouldDirty: true });
+    }
+  };
 
   return (
     <div className={styles.checkboxGroup}>
-      <h3>{label}</h3>
+      <h3 className="form-subheading">{label}</h3>
       <div className={styles.tilesContainer}>
         {options.map((option) => (
           <label key={option} className={styles.tileItem}>
@@ -15,7 +27,8 @@ export const CheckboxGroup = ({ name, label, options }) => {
               type="checkbox"
               value={option}
               {...register(name)}
-              className={styles.srOnly}
+              onKeyDown={(e) => handleKeyDown(e, option)}
+              className="sr-only"
             />
             <span className={styles.tileText}>{option}</span>
           </label>

@@ -1,22 +1,42 @@
 @import url("https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&display=swap");
 
 :root {
-  --primary: #845ec2;
+  --primary: #2252f1;
+  --primary-dark: #1d4ed8;
+  --primary-light: #2563eb;
   --secondary: #4e8397;
-  --inputBackground: #cdb4f6;
-  --error-red: #ef4444;
+  --primary-purple: #a78bfa;
+  --light-purple: #d8b4fe;
+  --inputBackground: #aca9bb;
+  --error-red: #dc0023;
+  --error-red-light: #ef4444;
   --white: #ffffff;
   --text-main: #1f2937;
-  --bg-gray: #d5cabd;
+  --text-secondary: #374151;
+  --border-color: #d1d5db;
+  --bg-gray: #474554;
+  --bg-violet: #f2ecff;
   --font-size-xs: 0.75rem;
+  --font-size-s: 0.875rem; /* 14px */
   --font-size-m: 1rem;
   --font-size-l: 1.25rem;
   --font-size-xl: 1.75rem;
-  --spacing-m: 1rem;
+  --padding-s: 0.75rem;
+  --padding-xs: 0.625rem;
+  --padding-m: 1rem;
+  --padding-ml: 1.25rem;
+  --padding-l: 1.5rem;
+  --radius-s: 6px;
   --radius: 1rem;
+  --gap-s: 0.5rem;
   --gap-m: 1rem;
   --margin-m: 1rem;
   --margin-l: 1.5rem;
+  --margin-xl: 1.5rem;
+  --container-width: 720px;
+  --accent-red: #ff334f;
+  --accent-color: #646cff;
+  --accent-color-hover: #535bf2;
 }
 
 *,
@@ -29,5 +49,14 @@
 .error {
   width: 75%;
   color: var(--error-red);
-  font-size: var(var(--font-size-xs));
+  font-size: var(--font-size-xs);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --font-size-s: 0.8125rem; /* 13px */
+    --font-size-m: 0.9375rem; /* 15px */
+    --font-size-l: 1.125rem; /* 18px */
+    --font-size-xl: 1.5rem; /* 24px */
+  }
 }

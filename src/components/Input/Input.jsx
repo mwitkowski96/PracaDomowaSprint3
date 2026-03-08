@@ -7,6 +7,7 @@ export const Input = ({
   label,
   type = "text",
   placeholder,
+  labelSrOnly = false,
   ...props
 }) => {
   const {
@@ -17,9 +18,12 @@ export const Input = ({
   const hasError = name.split(".").reduce((obj, key) => obj?.[key], errors);
 
   return (
-    <>
+    <div className={styles.inputWrapper}>
       {label && (
-        <label htmlFor={name} className={styles.label}>
+        <label
+          htmlFor={name}
+          className={`${styles.label} ${labelSrOnly ? "sr-only" : ""}`}
+        >
           {label}
         </label>
       )}
@@ -34,6 +38,6 @@ export const Input = ({
       />
 
       <ErrorMessage name={name} />
-    </>
+    </div>
   );
 };

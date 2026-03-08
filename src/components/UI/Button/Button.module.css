@@ -1,0 +1,36 @@
+.button {
+  padding: var(--padding-s) var(--padding-m);
+  border: none;
+  border-radius: var(--radius-s);
+  font-size: var(--font-size-m);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  text-align: center;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+}
+
+.primary {
+  background-color: var(--primary-light);
+  color: var(--white);
+}
+
+.primary:hover:not(:disabled) {
+  background-color: var(--primary-dark);
+}
+
+.primary:disabled {
+  background-color: color-mix(in srgb, var(--primary-light) 50%, var(--white));
+}
+
+.accent {
+  background-color: var(--accent-color);
+  color: black;
+}
+
+.accent:hover:not(:disabled) {
+  background-color: var(--accent-color-hover);
+}

@@ -3,19 +3,27 @@ import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
 import styles from "./Radio.module.css";
 
 export const Radio = ({ name, label, options = [] }) => {
-  const { register } = useFormContext();
+  const { register, setValue } = useFormContext();
+
+  const handleKeyDown = (e, value) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      setValue(name, value, { shouldValidate: true, shouldDirty: true });
+    }
+  };
 
   return (
     <div className={styles.radioGroup}>
-      <span className={styles.subHeading}>{label}</span>
-      <div className={styles.optionsWrapper}>
+      <h3 className="form-subheading">{label}</h3>
+      <div className={styles.wrapper}>
         {options.map((option) => (
           <label key={option.value} className={styles.radioLabel}>
             <input
               type="radio"
               value={option.value}
               {...register(name)}
-              className={styles.radioInput}
+              onKeyDown={(e) => handleKeyDown(e, option.value)}
+              className="sr-only"
             />
             <span className={styles.customCircle}></span>
             <span className={styles.labelText}>{option.label}</span>

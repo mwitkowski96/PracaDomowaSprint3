@@ -2,6 +2,7 @@ import { useFieldArray, useFormContext, useWatch } from "react-hook-form";
 import { FormSection } from "../FormSection/FormSection";
 import { Checkbox } from "../Checkbox/Checkbox";
 import { ExperienceRow } from "../ExperienceRow/ExperienceRow";
+import { Button } from "../UI/Button/Button";
 import styles from "./ExperienceSection.module.css";
 
 export const ExperienceSection = () => {
@@ -20,13 +21,13 @@ export const ExperienceSection = () => {
 
       {hasExperience && (
         <div className={styles.experienceContainer}>
-          <button
+          <Button
             type="button"
-            className={styles.btnAdd}
+            variant="accent"
             onClick={() => append({ technology: "", level: "1" })}
           >
             + Dodaj technologię
-          </button>
+          </Button>
 
           {fields.map((field, index) => (
             <ExperienceRow key={field.id} index={index} remove={remove} />
